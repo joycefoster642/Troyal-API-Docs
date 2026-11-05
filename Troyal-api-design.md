@@ -1,8 +1,7 @@
-| col1 | col2 | col3 | col4 | col5 | col6 |
+| Resource | Method | Path | Description | Auth | Result |
 --- | --- | --- | --- | --- | ---
-| col1 text | col2 text | col3 text | col4 text | col5 text | col6 text |
-| col1 text | col2 text | col3 text | col4 text | col5 text | col6 text |
-| col1 text | col2 text | col3 text | col4 text | col5 text | col6 text |
-| col1 text | col2 text | col3 text | col4 text | col5 text | col6 text |
-| col1 text | col2 text | col3 text | col4 text | col5 text | col6 text |
-| col1 text | col2 text | col3 text | col4 text | col5 text | col6 text |
+| Works | GET | col3 text | col4 text | col5 text | col6 text |
+| Works | POST | col3 text | col4 text | col5 text | col6 text |
+| Works | GET | col3 text | col4 text | col5 text | col6 text |
+| Works | PATCH | col3 text | col4 text | col5 text | col6 text |
+| Works | DELETE | col3 text | col4 text | col5 text | col6 text |
