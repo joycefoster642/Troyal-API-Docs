@@ -12,7 +12,23 @@ Troyal gives labels, entertainment law firms and management companies one place 
 - **Generate statements of account** for each payee
 - **Maintain artist and label profiles,** including statements of ownership
 
+# What's in this repo
 
+- [API design](Troyal-api-design.md): the resources, endpoints and authentication for the Troyal API
+- Getting Started guide: coming soon
+- OpenAPI specification: coming soon
+
+# About this project
+
+I built Troyal to practise documenting a real B2B SaaS product, from the first idea to the finished docs. I heard so much about royalty problems in the music industry that I wanted to build something around it, even if it's only on paper.
+
+I'm using Markdown, GitHub and Jira, and I'm sharing each step as I go on LinkedIn, Dev.to and Hashnode.
+
+
+# Author
+Joyce Foster
+LinkedIn-
+Portfolio-
 
 
 
