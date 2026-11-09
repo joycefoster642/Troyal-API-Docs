@@ -1,1 +1,49 @@
-
+openapi: 3.0.3
+info:
+  title: Troyal API
+  description: A fictional B2B SaaS API for tracking music and film royalties, ownership splits and licences.
+  version: 1.0.0
+servers:
+  - url: https://api.troyal.example/v1
+security:
+  - ApiKeyAuth: []
+paths:
+  /works:
+    get:
+      summary: List works
+      description: Lists all works in your account.
+      responses:
+        "200":
+          description: A list of works.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: wrk_1001
+                        title:
+                          type: string
+                          example: Midnight in Lagos
+                        type:
+                          type: string
+                          example: music
+                        created_at:
+                          type: string
+                          format: date-time
+                          example: "2026-11-01T09:30:00Z"
+        "401":
+          description: Missing or invalid API key.
+        "429":
+          description: Too many requests.
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: http
+      scheme: bearer
