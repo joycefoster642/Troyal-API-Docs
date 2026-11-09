@@ -15,7 +15,7 @@ Troyal gives labels, entertainment law firms and management companies one place 
 # What's in this repo
 
 - [API design](Troyal-api-design.md): the resources, endpoints and authentication for the Troyal API
-- Getting Started guide: coming soon
+- [Getting Started guide](getting-started.md)
 - OpenAPI specification: coming soon
 
 # About this project
