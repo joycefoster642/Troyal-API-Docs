@@ -42,6 +42,52 @@ paths:
           description: Missing or invalid API key.
         "429":
           description: Too many requests.
+    post:
+      summary: Create a work
+      description: Creates a new work in your account.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - title
+                - type
+              properties:
+                title:
+                  type: string
+                  example: Midnight in Lagos
+                type:
+                  type: string
+                  example: music
+      responses:
+        "201":
+          description: The work was created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: wrk_1001
+                  title:
+                    type: string
+                    example: Midnight in Lagos
+                  type:
+                    type: string
+                    example: music
+                  created_at:
+                    type: string
+                    format: date-time
+                    example: "2026-11-01T09:30:00Z"
+        "400":
+          description: The request was invalid, for example a missing title.
+        "401":
+          description: Missing or invalid API key.
+        "429":
+          description: Too many requests.
 components:
   securitySchemes:
     ApiKeyAuth:
