@@ -88,6 +88,102 @@ paths:
           description: Missing or invalid API key.
         "429":
           description: Too many requests.
+  /works/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the work.
+        schema:
+          type: string
+          example: wrk_1001
+    get:
+      summary: Retrieve a work
+      description: Retrieves one work by its ID.
+      responses:
+        "200":
+          description: The requested work.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: wrk_1001
+                  title:
+                    type: string
+                    example: Midnight in Lagos
+                  type:
+                    type: string
+                    example: music
+                  created_at:
+                    type: string
+                    format: date-time
+                    example: "2026-11-01T09:30:00Z"
+        "401":
+          description: Missing or invalid API key.
+        "404":
+          description: No work exists with this ID.
+        "429":
+          description: Too many requests.
+    patch:
+      summary: Update a work
+      description: Updates one or more fields of an existing work.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: Midnight in Port Harcourt
+                type:
+                  type: string
+                  example: music
+      responses:
+        "200":
+          description: The updated work.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: wrk_1001
+                  title:
+                    type: string
+                    example: Midnight in Port Harcourt
+                  type:
+                    type: string
+                    example: music
+                  created_at:
+                    type: string
+                    format: date-time
+                    example: "2026-11-01T09:30:00Z"
+        "400":
+          description: The request was invalid.
+        "401":
+          description: Missing or invalid API key.
+        "404":
+          description: No work exists with this ID.
+        "429":
+          description: Too many requests.
+    delete:
+      summary: Delete a work
+      description: Permanently deletes a work.
+      responses:
+        "204":
+          description: The work was deleted. No content is returned.
+        "401":
+          description: Missing or invalid API key.
+        "404":
+          description: No work exists with this ID.
+        "429":
+          description: Too many requests.
 components:
   securitySchemes:
     ApiKeyAuth:
