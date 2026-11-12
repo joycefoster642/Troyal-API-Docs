@@ -17,7 +17,8 @@ Troyal gives labels, entertainment law firms and management companies one place 
 - [API design](Troyal-api-design.md): the resources, endpoints and authentication for the Troyal API
 - [Getting Started guide](getting-started.md)
 - [Error codes guide](error-codes.md)
-- OpenAPI specification: coming soon
+- [OpenAPI specification](openapi.yaml)
+- [Changelog](changelog.md)
 
 # About this project
 
