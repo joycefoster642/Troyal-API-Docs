@@ -1,1 +1,8 @@
-
+theme: jekyll-theme-minimal
+title: Troyal API Documentation
+description: Documentation for Troyal, a fictional B2B SaaS API for tracking music and film royalties.
+plugins:
+  - jekyll-relative-links
+relative_links:
+  enabled: true
+  collections: false
