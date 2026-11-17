@@ -31,9 +31,11 @@ I'm using Markdown, GitHub and Jira, and I'm sharing each step as I go on Linked
 # Author
 Joyce Foster
 
-## LinkedIn-https://www.linkedin.com/in/joyce-foster-b2245b252
+[LinkedIn](https://www.linkedin.com/in/joyce-foster-b2245b252)
 
-## Portfolio-https://joycefoster642.github.io/
+## Portfolio
+
+[Troyal API Documentation (live site)](https://joycefoster642.github.io/Troyal-API-Docs/)
 
 
 
