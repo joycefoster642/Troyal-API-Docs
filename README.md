@@ -35,8 +35,7 @@ Joyce Foster
 
 ## Portfolio
 
-[Troyal API Documentation (live site)](https://joycefoster642.github.io/Troyal-API-Docs/)
-
+(https://joycefoster642.github.io/)
 
 
 
