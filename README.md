@@ -35,8 +35,7 @@ Joyce Foster
 
 ## Portfolio
 
-(https://joycefoster642.github.io/)
-
+[joycefoster642.github.io](https://joycefoster642.github.io/)
 
 
 
