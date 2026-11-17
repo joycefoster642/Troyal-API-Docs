@@ -31,11 +31,10 @@ I'm using Markdown, GitHub and Jira, and I'm sharing each step as I go on Linked
 # Author
 Joyce Foster
 
+
 [LinkedIn](https://www.linkedin.com/in/joyce-foster-b2245b252)
 
-## Portfolio
-
-[joycefoster642.github.io](https://joycefoster642.github.io/)
+[Portfolio](https://joycefoster642.github.io/)
 
 
 
