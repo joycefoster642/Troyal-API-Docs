@@ -184,6 +184,263 @@ paths:
           description: No work exists with this ID.
         "429":
           description: Too many requests.
+            /works/{id}/splits:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Unique ID of the work.
+        schema:
+          type: string
+          example: wrk_8f2a91
+    get:
+      summary: Get ownership splits for a work
+      description: Returns who owns what share of a work. The shares always add up to 100.
+      tags: [Splits]
+      responses:
+        '200':
+          description: The current ownership splits.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  work_id:
+                    type: string
+                    example: wrk_8f2a91
+                  splits:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        payee_id:
+                          type: string
+                          example: pay_31c7d0
+                        role:
+                          type: string
+                          example: songwriter
+                        share_percent:
+                          type: number
+                          example: 60
+              example:
+                work_id: wrk_8f2a91
+                splits:
+                  - payee_id: pay_31c7d0
+                    role: songwriter
+                    share_percent: 60
+                  - payee_id: pay_77b2e4
+                    role: producer
+                    share_percent: 40
+        '401':
+          description: Missing or invalid API key.
+        '404':
+          description: Work not found.
+        '429':
+          description: Too many requests. Retry after the time in the Retry-After header.
+    put:
+      summary: Replace ownership splits for a work
+      description: Replaces all splits for the work. The share_percent values must add up to exactly 100.
+      tags: [Splits]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [splits]
+              properties:
+                splits:
+                  type: array
+                  minItems: 1
+                  items:
+                    type: object
+                    required: [payee_id, share_percent]
+                    properties:
+                      payee_id:
+                        type: string
+                      role:
+                        type: string
+                      share_percent:
+                        type: number
+                        minimum: 0
+                        maximum: 100
+            example:
+              splits:
+                - payee_id: pay_31c7d0
+                  role: songwriter
+                  share_percent: 60
+                - payee_id: pay_77b2e4
+                  role: producer
+                  share_percent: 40
+      responses:
+        '200':
+          description: Splits updated.
+        '400':
+          description: Invalid request, for example the shares do not add up to 100.
+        '401':
+          description: Missing or invalid API key.
+        '404':
+          description: Work not found.
+        '429':
+          description: Too many requests. Retry after the time in the Retry-After header.
+  /statements:
+    get:
+      summary: List royalty statements
+      description: Returns royalty statements, newest first. Filter by work, payee or period.
+      tags: [Statements]
+      parameters:
+        - name: work_id
+          in: query
+          schema:
+            type: string
+        - name: payee_id
+          in: query
+          schema:
+            type: string
+        - name: period_start
+          in: query
+          description: Only statements covering dates on or after this date.
+          schema:
+            type: string
+            format: date
+        - name: period_end
+          in: query
+          description: Only statements covering dates on or before this date.
+          schema:
+            type: string
+            format: date
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+            maximum: 100
+      responses:
+        '200':
+          description: A list of statements.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: stm_5d09b1
+                        work_id:
+                          type: string
+                          example: wrk_8f2a91
+                        period_start:
+                          type: string
+                          format: date
+                          example: '2026-07-01'
+                        period_end:
+                          type: string
+                          format: date
+                          example: '2026-09-30'
+                        status:
+                          type: string
+                          enum: [draft, final]
+        '400':
+          description: Invalid query parameter.
+        '401':
+          description: Missing or invalid API key.
+        '429':
+          description: Too many requests. Retry after the time in the Retry-After header.
+    post:
+      summary: Generate a royalty statement
+      description: Creates a statement for a work and period, applying the work's current ownership splits to its stream usage.
+      tags: [Statements]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [work_id, period_start, period_end]
+              properties:
+                work_id:
+                  type: string
+                period_start:
+                  type: string
+                  format: date
+                period_end:
+                  type: string
+                  format: date
+            example:
+              work_id: wrk_8f2a91
+              period_start: '2026-07-01'
+              period_end: '2026-09-30'
+      responses:
+        '201':
+          description: Statement created.
+          content:
+            application/json:
+              example:
+                id: stm_5d09b1
+                work_id: wrk_8f2a91
+                period_start: '2026-07-01'
+                period_end: '2026-09-30'
+                status: draft
+                currency: USD
+                gross_revenue: 1000.00
+                lines:
+                  - payee_id: pay_31c7d0
+                    share_percent: 60
+                    amount: 600.00
+                  - payee_id: pay_77b2e4
+                    share_percent: 40
+                    amount: 400.00
+        '400':
+          description: Invalid request, for example period_end is before period_start.
+        '401':
+          description: Missing or invalid API key.
+        '404':
+          description: Work not found.
+        '429':
+          description: Too many requests. Retry after the time in the Retry-After header.
+  /statements/{statement_id}:
+    get:
+      summary: Get one royalty statement
+      description: Returns a single statement with a line for each payee.
+      tags: [Statements]
+      parameters:
+        - name: statement_id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: stm_5d09b1
+      responses:
+        '200':
+          description: The statement.
+          content:
+            application/json:
+              example:
+                id: stm_5d09b1
+                work_id: wrk_8f2a91
+                period_start: '2026-07-01'
+                period_end: '2026-09-30'
+                status: final
+                currency: USD
+                gross_revenue: 1000.00
+                lines:
+                  - payee_id: pay_31c7d0
+                    share_percent: 60
+                    amount: 600.00
+                  - payee_id: pay_77b2e4
+                    share_percent: 40
+                    amount: 400.00
+        '401':
+          description: Missing or invalid API key.
+        '404':
+          description: Statement not found.
+        '429':
+          description: Too many requests. Retry after the time in the Retry-After header.
 components:
   securitySchemes:
     ApiKeyAuth:
