@@ -20,6 +20,7 @@ Troyal gives labels, entertainment law firms and management companies one place 
 - [OpenAPI specification](openapi.yaml)
 - [Changelog](changelog.md)
 - [Webhooks guide](webhooks.md)
+- [Splits and statements](splits-and-statements.md)
 
 # About this project
 
