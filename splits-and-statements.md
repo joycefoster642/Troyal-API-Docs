@@ -22,7 +22,7 @@ Authorization: Bearer YOUR_API_KEY
 Use `PUT /works/{id}/splits` to replace all the splits for a work. This request gives a songwriter 60% and a producer 40%:
 
 ```bash
-curl -X PUT https://YOUR_BASE_URL/works/wrk_8f2a91/splits \
+curl -X PUT https://api.troyal.example/v1/works/wrk_8f2a91/splits \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -42,7 +42,7 @@ To check the current splits, call `GET /works/{id}/splits`.
 Use `POST /statements` with the work and the period you want to report on:
 
 ```bash
-curl -X POST https://YOUR_BASE_URL/statements \
+curl -X POST https://api.troyal.example/v1/statements \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
