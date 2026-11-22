@@ -184,7 +184,7 @@ paths:
           description: No work exists with this ID.
         "429":
           description: Too many requests.
-/works/{id}/splits:
+  /works/{id}/splits:
     parameters:
       - name: id
         in: path
